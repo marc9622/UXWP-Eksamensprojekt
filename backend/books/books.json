@@ -1,0 +1,47 @@
+[
+  {
+    "isbn": "9781292159041",
+    "title": "Objects First with Java: A Practical Introduction Using BlueJ, Global Edition",
+    "edition": "6",
+    "authors": ["Michael Kölling", "David J. Barnes"],
+    "publicationDate": "01-07-2016",
+    "purchaseDate": "20-08-2019",
+    "originalPrice": "639.95",
+    "price": "200.00",
+    "imagePath": "http://localhost:3001/images/bluej.jpg",
+    "language": "English",
+    "condition": "new",
+    "ownerId": "user3762035",
+    "id": "book1232767"
+  },
+  {
+    "isbn": "9780357114087",
+    "title": "Discrete Mathematics with Applications, Metric Edition",
+    "edition": "5",
+    "authors": ["Susanna Epp"],
+    "publicationDate": "11-01-2019",
+    "purchaseDate": "15-08-2019",
+    "originalPrice": "589.95",
+    "price": "0.00",
+    "imagePath": "http://localhost:3001/images/bluej.jpg",
+    "language": "English",
+    "condition": "Very used, handwritten notes",
+    "ownerId": "user3762035",
+    "id": "book5532367"
+  },
+  {
+    "isbn": "9788757453683",
+    "title": "IT-projektarbejde - Introduktion til teknisk rapportskrivning i grupper",
+    "edition": "1",
+    "authors": ["Henriette Moos"],
+    "publicationDate": "26-08-2022",
+    "purchaseDate": "1-09-2022",
+    "originalPrice": "264.95",
+    "price": "100.00",
+    "imagePath": "http://localhost:3001/images/bluej.jpg",
+    "language": "Danish",
+    "condition": "Very used, handwritten notes",
+    "ownerId": "user3762035",
+    "id": "book4216732"
+  }
+]
