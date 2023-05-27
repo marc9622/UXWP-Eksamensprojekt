@@ -1,0 +1,28 @@
+[
+    {
+        "id": "CBS",
+        "name": "Copenhagen Business School"
+    },
+
+    {
+        "id": "AU",
+        "name": "Aarhus University"
+    },
+
+    {
+        "id": "ITU",
+        "name": "IT University of Copenhagen"
+    },
+
+    {
+        "id": "RUC",
+        "name": "Roskilde University"
+    },
+    
+    {
+        "id": "UCPH",
+        "name": "University of Copenhagen"
+    }  
+]
+
+
