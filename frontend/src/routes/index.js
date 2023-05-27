@@ -4,8 +4,8 @@ export default function Index() {
     const [universities, setUniversities] = useState([]);
 
     async function fetchUniversities() {
-        console.log('fetching universities');
-        const response = await fetch('http://localhost:3001/universities', {
+        console.log('fetching unilist');
+        const response = await fetch('http://localhost:3001/unilist', {
             method: 'GET',
         });
         const json = await response.json();
