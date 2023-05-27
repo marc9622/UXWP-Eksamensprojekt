@@ -20,7 +20,7 @@ export default function Index() {
     return (
         <div>
             {universities.map(uni =>
-                <div key={uni.id}>
+                <div>
                     <h1>{uni.name}</h1>
                 </div>
             )}
