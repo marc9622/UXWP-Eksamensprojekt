@@ -1,24 +1,29 @@
 import { useEffect, useState } from "react";
 
 export default function Index() {
-    const [uniList, setUniList] = useState([]);
+    const [universities, setUniversities] = useState([]);
 
-    async function fetchUniList() {
-        const response = await fetch('http://localhost:3001/unilist', {
+    async function fetchUniversities() {
+        console.log('fetching universities');
+        const response = await fetch('http://localhost:3001/universities', {
             method: 'GET',
         });
         const json = await response.json();
-        console.log(json);
+        console.log(json.test);
         return json;
     }
 
     useEffect(() => {
-        fetchUniList().then(data => setUniList(data));
+        fetchUniversities().then(data => setUniversities(data));
     }, []);
 
     return (
         <div>
-            <h1>Front Page</h1>
+            {universities.map(uni =>
+                <div key={uni.id}>
+                    <h1>{uni.name}</h1>
+                </div>
+            )}
         </div>
     );
 }
