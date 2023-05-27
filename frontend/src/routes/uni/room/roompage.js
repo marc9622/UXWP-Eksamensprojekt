@@ -52,10 +52,8 @@ function BookingsCalender() {
 function BookingsSchedule(bookings) {
     return (
         <div>
-            A
-        </div>
-        <div>
-            B
+            <div>
+            </div>
         </div>
     );
 }
