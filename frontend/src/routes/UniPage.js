@@ -6,7 +6,7 @@ export default function UniPage() {
     const [rooms, setRooms] = useState([]);
 
     async function fetchRooms() {
-        return await fetch('http://localhost:3001/uni/' + params.uniId + '/roomlist', {method: 'GET'}).then(res => res.json());
+        return await fetch('http://localhost:3001/' + params.uniId + '/rooms-list', {method: 'GET'}).then(res => res.json());
     }
 
     useEffect(() => {fetchRooms().then(data => setRooms(data))}, []);
