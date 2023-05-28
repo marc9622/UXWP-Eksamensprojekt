@@ -30,10 +30,10 @@ router.get('/unis-list', async (request, response) => {
     }
 });
 
-router.get('/:id/rooms-list', async (request, response) => {
+router.get('/:uniID/rooms-list', async (request, response) => {
     try {
       console.log(request.params.id);
-        var roomList = await rooms.getAll(request.params.id);
+        var roomList = await rooms.getAll(request.params.uniID);
         response.setHeader('Content-Type', 'application/json');
         console.log(roomList);
         response.json(roomList);
@@ -44,9 +44,9 @@ router.get('/:id/rooms-list', async (request, response) => {
     }
 });
 
-router.get('/bookings-list', async (request, response) => {
+router.get('/:uniID/bookings-list', async (request, response) => {
     try {
-        var bookingList = await bookings.getAll();
+        var bookingList = await bookings.getAll(request.params.uniID);
         response.setHeader('Content-Type', 'application/json');
         console.log(bookingList);
         response.json(bookingList);
@@ -110,9 +110,9 @@ router.get('/unis/:id', async (request, response) => {
     }
 });
 
-router.get('/bookings/:id', async (request, response) => {
+router.get('/:uniID/bookings/:id', async (request, response) => {
     try {
-        const booking = await bookings.getByID(request.params.id);
+        const booking = await bookings.getByID(request.params.id,request.params.uniID);
         response.setHeader('Content-Type', 'application/json');
         console.log(booking);
         response.json(booking);

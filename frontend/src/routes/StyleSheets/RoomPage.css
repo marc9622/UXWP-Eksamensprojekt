@@ -12,12 +12,19 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     padding: 2px 16px;
-    background-color: rgb(114, 28, 28);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     aspect-ratio: 1/1; /* Set aspect-ratio to create a square shape */
+  }
+
+  .room-cards.booked {
+    background-color: red;
+  }
+  
+  .room-cards.available {
+    background-color: green;
   }
   
   /* On mouse-over, add a deeper shadow */

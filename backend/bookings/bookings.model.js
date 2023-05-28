@@ -1,12 +1,18 @@
 import * as fs from "fs/promises";
 import { createRandomID } from "../utility.js";
-const BOOKING_FILE = "./bookings/bookings.json";
+var BOOKING_FILE = "";
 
+
+function getBookingFile(UNI_ID){
+    BOOKING_FILE = "./bookings/"+UNI_ID+"_bookings.json";
+}
 // return all bookings from file
-export async function getAll() {
+export async function getAll(UNI_ID) {
     try {
+        getBookingFile(UNI_ID);
         let bookingsText = await fs.readFile(BOOKING_FILE);
         let bookings = JSON.parse(bookingsText);
+        console.log(bookings);
         return bookings;
     } catch (err) {
         if (err.code === "ENOENT") {
@@ -27,12 +33,13 @@ async function save(bookings = []) {
 
 // helper function
 function findBooking(bookingArray, bookingId) {
-    return bookingArray.findIndex((booking) => booking.id === bookingId);
+    return bookingArray.findIndex((booking) => booking.bookingID === bookingId);
 }
 
 // get booking by ID
-export async function getByID(bookingId) {
-    let bookingArray = await getAll();
+export async function getByID(bookingId,UNI_ID) {
+    getBookingFile(UNI_ID);
+    let bookingArray = await getAll(UNI_ID);
     let index = findBooking(bookingArray, bookingId);
     if (index === -1)
     throw new Error(`user with name '${bookingId}' doesn't exist`);
