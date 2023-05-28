@@ -3,11 +3,11 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import * as users from "./users/users.model.js"
 import * as rooms from "./rooms/rooms.model.js"
-import * as bookings from './bookings/bookings.model.js'
+import * as bookings from "./bookings/bookings.model.js"
 import * as unis from "./institutions/institutions.model.js"
 
 const app = express();
-const PORT = 3001;
+const PORT = 3001; // fetch url: localhost:3001
 const router = express.Router();
 
 app.use(express.json());
@@ -30,9 +30,10 @@ router.get('/unis-list', async (request, response) => {
     }
 });
 
-router.get('/rooms-list', async (request, response) => {
+router.get('/:id/rooms-list', async (request, response) => {
     try {
-        var roomList = await rooms.getAll();
+      console.log(request.params.id);
+        var roomList = await rooms.getAll(request.params.id);
         response.setHeader('Content-Type', 'application/json');
         console.log(roomList);
         response.json(roomList);
