@@ -3,10 +3,6 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import fs from "fs";
 import { createRandomID } from "./utility.js";
-import * as users from "./users/users.model.js";
-import * as rooms from "./rooms/rooms.model.js";
-import * as bookings from './bookings/bookings.model.js';
-import * as clients  from './clients/clients.model.js';
 
 const app = express();
 const PORT = 3001; // fetch url: localhost:3001
@@ -18,39 +14,125 @@ app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
 app.post("/upload", (request, response) => {
-  
-  // Get the file that was set to our field named "image"
-  console.log(request.files);
-  const { file } = request.files;
 
-  // If no image submitted, exit
-  if (!file) return response.sendStatus(400);
+    // Get the file that was set to our field named "image"
+    console.log(request.files);
+    const { file } = request.files;
 
-  // Move the uploaded image to our upload folder
-  const fileName = createRandomID("book") + file.name;
-  file.mv("./images/" + fileName);
-  response.send(
-    JSON.stringify({
-      status: 200,
-      body: { imagePath: `http://localhost:${PORT}/images/${fileName}` },
-    })
-  );
+    // If no image submitted, exit
+    if (!file) return response.sendStatus(400);
+
+    // Move the uploaded image to our upload folder
+    const fileName = createRandomID("book") + file.name;
+    file.mv("./images/" + fileName);
+    response.send(
+        JSON.stringify({
+            status: 200,
+            body: { imagePath: `http://localhost:${PORT}/images/${fileName}` },
+        })
+    );
 });
 
 
 // vJERES KODE HERv
+
 const clientPath = "clients/clients.json";
 let clientData = fs.readFileSync(clientPath);
 let clientJSON = JSON.parse(clientData);
 
 app.get("/clientlist", (req, res) => {
-  const result = clientJSON.clients;
-  res.status(200).send(result);
+    const result = clientJSON.clients;
+    res.status(200).send(result);
+});
+
+app.get('/unilist', (_, res) => {
+    res.status(200).send(
+        // Test data
+        JSON.stringify([
+            {id: 'itu', name: 'IT-Universitetet i København'},
+            {id: 'dtu', name: 'Danmarks Tekniske Universitet'},
+            {id: 'cbs', name: 'Copenhagen Business School'},
+            {id: 'ku',  name: 'Københavns Universitet'},
+        ])
+    )
+});
+
+app.get('/uni/:uniId/roomlist', (req, res) => {
+    res.status(200).send(
+        // Test data
+        JSON.stringify([
+            {id: 'aud1', name: 'Auditorium 1'},
+            {id: 'aud2', name: 'Auditorium 2'},
+            {id: 'aud3', name: 'Auditorium 3'},
+            {id: 'room1', name: 'Room 1'},
+            {id: 'room2', name: 'Room 2'},
+            {id: 'room3', name: 'Room 3'},
+        ])
+    )
+});
+app.get('/uni/:uniId/room/:roomId', (req, res) => {
+    res.status(200).send(
+        // Test data
+        JSON.stringify({
+            facilities: {
+                chairs: 12,
+                powerOutlets: 12,
+                isFoodAllowed: false,
+                hasScreen: true,
+                hasCamera: false,
+                hasProjector: true,
+                hasWhiteboard: true,
+            },
+            bookings: {
+                today: [
+                    {
+                        id: 0,
+                        startTimeHour: 10,
+                        startTimeMinute: 30,
+                        endTimeHour: 12,
+                        endTimeMinute: 30,
+                    },
+                    {
+                        id: 1,
+                        startTimeHour: 13,
+                        startTimeMinute: 0,
+                        endTimeHour: 14,
+                        endTimeMinute: 30,
+                    },
+                    {
+                        id: 2,
+                        startTimeHour: 16,
+                        startTimeMinute: 0,
+                        endTimeHour: 18,
+                        endTimeMinute: 0,
+                    }
+                ],
+                thisMonth: [
+                    {
+                        date: 27,
+                        bookedAmount: "fully",
+                    },
+                    {
+                        date: 28,
+                        bookedAmount: "half",
+                    },
+                    {
+                        date: 29,
+                        bookedAmount: "not",
+                    },
+                    {
+                        date: 30,
+                        bookedAmount: "nearly",
+                    },
+                ],
+            },
+        })
+    )
 });
 
 // ^JERES KODE HER^
 
 app.listen(PORT, function (err) {
-  if (err) console.log("Error in server setup");
-  console.log("Server listening on Port", PORT);
+    if (err) console.log("Error in server setup");
+    console.log("Server listening on Port", PORT);
 });
