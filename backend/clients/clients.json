@@ -1,9 +1,7 @@
-{
-    "clients":[
-        {
-            "id": 1,
-            "name": "Daniel",
-            "lastName": "Ahmadi"
-        }
-    ]
-}
+[
+    {
+        "id": 1,
+        "name": "Daniel",
+        "lastName": "Ahmadi"
+    }
+]

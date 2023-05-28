@@ -41,7 +41,6 @@ export async function getByID(bookingId) {
 
 // create a new user
 export async function add(booking) {
-  console.log(booking);
   const newBooking = booking;
   newBooking.id = createRandomID("booking");
   let bookingArray = await getAll();

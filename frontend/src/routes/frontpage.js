@@ -10,13 +10,11 @@ export default function FrontPage() {
     }
 
     async function fetchClients() {
-        return await fetch('http://localhost:3001/clientlist', {method: 'GET'}).then(res => res.json());
+        return await fetch('http://localhost:3001/clientlist/getusers', {method: 'GET'}).then(res => res.json());
     }
-
 
     useEffect(() => {fetchUniversities().then(data => setUniversities(data))}, []);
     useEffect(() => {fetchClients().then(data => setClients(data))}, []);
-
 
     return (
         <div>
