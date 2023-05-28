@@ -1,24 +1,19 @@
 [
-  {
-    "id": "room1351341",
-    "name": "Aud 1",
-    "address": "Rued Langgaards Vej 7, 2300 København",
-    "floor": "0",
-    "number": "1",
-    "people": "200",
-    "gear": ["projector", "microphone"],
-    "bookings": [],
-    "userRights": ["staff"]
-  },
-  {
-    "id": "room1351341",
-    "name": "4A03",
-    "address": "Rued Langgaards Vej 7, 2300 København",
-    "floor": "4",
-    "number": "03",
-    "people": "8",
-    "gear": ["tv", "polycom"],
-    "bookings": [],
-    "userRights": ["staff", "student"]
-  } 
-]
+    {
+      "id": "room1351341",
+      "name": "1A01",
+      "floor": "0",
+      "people": "4",
+      "facilities": ["projector", "blackboard"],
+      "bookings": []
+    },
+    {
+      "id": "room135234",
+      "name": "1A02",
+      "floor": "0",
+      "people": "4",
+      "facilities": ["projector", "microphone"],
+      "bookings": []
+    } 
+  ]
+  

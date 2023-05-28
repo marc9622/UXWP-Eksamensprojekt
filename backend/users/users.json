@@ -1,1 +1,33 @@
-[{ "user3762035": "", "bjwe@itu.dk": "", "snaskemams": "", "books": ["book1232767", "book5532367", "book4216732"], "orders": [] }]
+[
+    {
+      "id": "1",
+      "username": "john_doe",
+      "password": "password123",
+      "role": "user"
+    },
+    {
+      "id": "2",
+      "username": "jane_smith",
+      "password": "pass123",
+      "role": "admin"
+    },
+    {
+      "id": "3",
+      "username": "michael_brown",
+      "password": "securepass",
+      "role": "user"
+    },
+    {
+      "id": "4",
+      "username": "emily_jones",
+      "password": "12345678",
+      "role": "user"
+    },
+    {
+      "id": "5",
+      "username": "alex_wilson",
+      "password": "pass1234",
+      "role": "user"
+    }
+  ]
+  
