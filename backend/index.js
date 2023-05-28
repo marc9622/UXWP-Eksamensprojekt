@@ -5,6 +5,7 @@ import * as users from "./users/users.model.js"
 import * as rooms from "./rooms/rooms.model.js"
 import * as bookings from './bookings/bookings.model.js'
 import * as unis from "./Institution/Institutions.model.js"
+import * as clients  from './clients/clients.model.js';
 
 const app = express();
 const PORT = 3001; // fetch url: localhost:3001
@@ -120,7 +121,7 @@ router.get('/bookings/:id', async (request, response) => {
   }
 });
 
-router.post('/user', async (request, response) => {
+router.post('/user/add', async (request, response) => {
   try {
     const user = request.body;
     const createdUser = await users.add(user);
@@ -132,7 +133,7 @@ router.post('/user', async (request, response) => {
   }
 });
 
-router.post('/room', async (request, response) => {
+router.post('/room/add', async (request, response) => {
   try {
     const room = request.body;
     const createdRoom = await rooms.add(room);
@@ -145,7 +146,7 @@ router.post('/room', async (request, response) => {
 });
 
 
-router.post('/booking', async (request, response) => {
+router.post('/booking/add', async (request, response) => {
   try {
     const booking = request.body;
     const createdBooking = await bookings.add(booking);
@@ -157,7 +158,7 @@ router.post('/booking', async (request, response) => {
   }
 });
 
-router.post('/uni', async (request, response) => {
+router.post('/uni/add', async (request, response) => {
   try {
     const uni = request.body;
     const createdUni = await unis.add(uni);
@@ -168,6 +169,37 @@ router.post('/uni', async (request, response) => {
     response.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+
+const clientPath = "clients/clients.json";
+let clientData = fs.readFileSync(clientPath);
+let clientJSON = JSON.parse(clientData);
+
+app.get("/clientlist/getusers", (req, res) => {
+  const results = clients.getAll().then((results) =>{
+    res.status(200).send(results);
+  });
+});
+
+app.get("/clientlist/getbyid/:id", (req,res)=>{
+  const clientId = req.params.id;
+  const reqClient = clients.getById(clientId);
+ // const result = JSON.parse(reqClient);
+  res.status(200).send(reqClient);
+})
+
+app.post("/clientlist/add", (req,res)=>{
+  
+})
+
+app.delete("/clientlist/delete", (req,res)=>{
+  
+})
+
+app.delete("/clientlist/delete", (req,res)=>{
+  
+})
 
 app.listen(PORT, function (err) {
   if (err) console.log("Error in server setup");
