@@ -3,6 +3,10 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import fs from "fs";
 import { createRandomID } from "./utility.js";
+import * as users from "./users/users.model.js";
+import * as rooms from "./rooms/rooms.model.js";
+import * as bookings from './bookings/bookings.model.js';
+import * as clients  from './clients/clients.model.js';
 
 const app = express();
 const PORT = 3001; // fetch url: localhost:3001
