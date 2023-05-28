@@ -170,6 +170,37 @@ router.post('/uni/add', async (request, response) => {
   }
 });
 
+
+
+const clientPath = "clients/clients.json";
+let clientData = fs.readFileSync(clientPath);
+let clientJSON = JSON.parse(clientData);
+
+app.get("/clientlist/getusers", (req, res) => {
+  const results = clients.getAll().then((results) =>{
+    res.status(200).send(results);
+  });
+});
+
+app.get("/clientlist/getbyid/:id", (req,res)=>{
+  const clientId = req.params.id;
+  const reqClient = clients.getById(clientId);
+ // const result = JSON.parse(reqClient);
+  res.status(200).send(reqClient);
+})
+
+app.post("/clientlist/add", (req,res)=>{
+  
+})
+
+app.delete("/clientlist/delete", (req,res)=>{
+  
+})
+
+app.delete("/clientlist/delete", (req,res)=>{
+  
+})
+
 app.listen(PORT, function (err) {
   if (err) console.log("Error in server setup");
   console.log("Server listening on Port", PORT);
