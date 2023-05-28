@@ -2,10 +2,14 @@ import * as fs from "fs/promises";
 import { createRandomID } from "../utility.js";
 var ROOM_FILE = "";
 
+
+function getRoomFile(UNI_ID){
+    ROOM_FILE = "./rooms/"+UNI_ID+"_rooms.json";
+}
 // return all rooms from file
 export async function getAll(UNI_ID) {
     try {
-        ROOM_FILE = "./rooms/"+UNI_ID+"_rooms.json";
+        getRoomFile(UNI_ID);
         console.log(ROOM_FILE);
         let roomsText = await fs.readFile(ROOM_FILE);
         let rooms = JSON.parse(roomsText);
@@ -34,8 +38,7 @@ function findRoom(roomArray, roomId) {
 
 // get room by ID
 export async function getByID(roomId,UNI_ID) {
-    ROOM_FILE = "./rooms/"+UNI_ID+"_rooms.json";
-    let roomArray = await getAll();
+    let roomArray = await getAll(UNI_ID);
     let index = findRoom(roomArray, roomId);
     if (index === -1) throw new Error(`room with name '${roomId}' doesn't exist`);
     else return roomArray[index];

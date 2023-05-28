@@ -83,9 +83,11 @@ router.get('/user/:id', async (request, response) => {
     }
 });
 
-router.get('/room/:id', async (request, response) => {
+router.get('/:uniID/room/:roomID', async (request, response) => {
     try {
-        var room = await rooms.getByID(request.params.id);
+        console.log(request.params.roomID);
+        console.log(request.params.uniID);
+        var room = await rooms.getByID(request.params.roomID,request.params.uniID);
         response.setHeader('Content-Type', 'application/json');
         console.log(room);
         response.json(room);

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BookingsCalender from "../components/BookingCalender";
 import BookingsSchedule from "../components/BookingSchedule";
+import './StyleSheets/RoomPage.css';
 
 export default function RoomPage() {
     const params = useParams();
@@ -14,7 +15,7 @@ export default function RoomPage() {
     });
 
     async function fetchRoom() {
-        return await fetch('http://localhost:3001/uni/' + params.uniId + '/room/' + params.roomId, {method: 'GET'}).then(res => res.json());
+        return await fetch('http://localhost:3001/' + params.uniId + '/room/' + params.roomId, {method: 'GET'}).then(res => res.json());
     }
 
     useEffect(() => {fetchRoom().then(data => setRoom(data))}, []);
@@ -39,9 +40,11 @@ export default function RoomPage() {
                     <div>Has whiteboard</div> }
             </div>
             <div>
+            {/* 
                 <h2>Bookings:</h2>
                 <BookingsCalender bookings={room.bookings.thisMonth}/>
                 <BookingsSchedule bookings={room.bookings.today}/>
+            */}  
             </div>
         </div>
     );
