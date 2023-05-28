@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 export default function RoomPage() {
     const params = useParams();
 
-    const [room, setRoom] = useState({
+    const [room, setRoom] = useState({ // Layout of the room objects that should be fetched from the API
         facilities: {},
         bookings: {
             today: [],
@@ -39,20 +39,47 @@ export default function RoomPage() {
             </div>
             <div>
                 <h2>Bookings:</h2>
-                <BookingsSchedule bookings={room.bookings.today}/>
+                <BookingsCalender bookings={room.bookings}/>
+                <BookingsSchedule bookings={room.bookings}/>
             </div>
         </div>
     );
 }
 
-function BookingsCalender() {
-    return null;
-}
-
-function BookingsSchedule(bookings) {
+function BookingsCalender(room) {
     return (
         <div>
             <div>
+                <h3>This Month:</h3>
+                {room.bookings.thisMonth.map(day => (
+                    <div>
+                        The {day.date + getNumberSuffix(day.date)} is {day.bookedAmount} booked
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function getNumberSuffix(number) {
+    switch (number.toString().slice(-1)) {
+        case '1': return 'st';
+        case '2': return 'nd';
+        case '3': return 'rd';
+        default: return 'th';
+    }
+}
+
+function BookingsSchedule(room) {
+    return (
+        <div>
+            <div>
+                <h3>Todays Schedule:</h3>
+                {room.bookings.today.map(booking => (
+                    <div>
+                        Booking {booking.id} from {booking.startTimeHour}:{booking.startTimeMinute} to {booking.endTimeHour}:{booking.endTimeMinute}
+                    </div>
+                ))}
             </div>
         </div>
     );
