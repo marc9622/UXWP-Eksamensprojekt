@@ -1,5 +1,5 @@
 import * as fs from "fs/promises";
-const UNI_FILE = "./institution/institutions.json";
+const UNI_FILE = "./institutions/institutions.json";
 
 export async function getAll() {
     try {
@@ -16,4 +16,10 @@ export async function getAll() {
         } // cannot handle this exception, so rethrow
         else throw err;
     }
+}
+
+// save array of users to file
+async function save(uni = []) {
+    let uniText = JSON.stringify(uni);
+    await fs.writeFile(UNI_FILE, uniText);
 }

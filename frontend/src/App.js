@@ -1,8 +1,8 @@
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import FrontPage from './routes/frontpage';
-import UniPage from './routes/uni/unipage';
-import RoomPage from './routes/uni/room/roompage';
+import FrontPage from './routes/FrontPage';
+import UniPage from './routes/UniPage';
+import RoomPage from './routes/RoomPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 

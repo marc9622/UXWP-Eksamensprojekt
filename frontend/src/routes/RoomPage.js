@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BookingsCalender from "../../../components/BookingCalender";
-import BookingsSchedule from "../../../components/BookingSchedule";
+import BookingsCalender from "../components/BookingCalender";
+import BookingsSchedule from "../components/BookingSchedule";
 
 export default function RoomPage() {
     const params = useParams();

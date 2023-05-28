@@ -4,10 +4,10 @@ import fileUpload from "express-fileupload";
 import * as users from "./users/users.model.js"
 import * as rooms from "./rooms/rooms.model.js"
 import * as bookings from './bookings/bookings.model.js'
-import * as unis from "./Institution/Institutions.model.js"
+import * as unis from "./institutions/institutions.model.js"
 
 const app = express();
-const PORT = 3001; // fetch url: localhost:3001
+const PORT = 3001;
 const router = express.Router();
 
 app.use(express.json());
