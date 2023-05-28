@@ -46,6 +46,28 @@ app.get("/clientlist/getusers", (req, res) => {
   });
 });
 
+app.get("/clientlist/getbyid/:id", (req,res)=>{
+  const clientId = req.params.id;
+  const reqClient = clients.getById(clientId);
+ // const result = JSON.parse(reqClient);
+  res.status(200).send(reqClient);
+
+  
+
+})
+
+app.post("/clientlist/add", (req,res)=>{
+  
+})
+
+app.delete("/clientlist/delete", (req,res)=>{
+  
+})
+
+app.delete("/clientlist/delete", (req,res)=>{
+  
+})
+
 app.get('/unilist', (_, res) => {
     res.status(200).send(
         // Test data
@@ -131,27 +153,7 @@ app.get('/uni/:uniId/room/:roomId', (req, res) => {
     )
 });
 
-app.get("/clientlist/getbyid/:id", (req,res)=>{
-  const clientId = req.params.id;
-  const reqClient = clients.getById(clientId);
- // const result = JSON.parse(reqClient);
-  res.status(200).send(reqClient);
 
-  
-
-})
-
-app.post("/clientlist/add", (req,res)=>{
-  
-})
-
-app.delete("/clientlist/delete", (req,res)=>{
-  
-})
-
-app.delete("/clientlist/delete", (req,res)=>{
-  
-})
 
 // ^JERES KODE HER^
 
