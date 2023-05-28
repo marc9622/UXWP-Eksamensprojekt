@@ -24,12 +24,10 @@ export default function FrontPage() {
                 </div>
             )}
 
+            <h1>Clients</h1>
             {clients.map(client =>
                 <div>
-                    <h1>Clients</h1>
-                    <p>Name: {client.name}</p>
-                    <p>Last Name: {client.lastName}</p>
-                    <p>ID: {client.id}</p>
+                    <p>{client.id}: {client.username}, {client.password} ({client.role})</p>
                 </div>
             )}
         </div>

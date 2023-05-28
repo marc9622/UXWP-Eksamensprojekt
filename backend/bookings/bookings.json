@@ -1,11 +1,11 @@
 [
     {
-      "bookingID": "1432543",
-      "userID": "01",
-      "roomID": "432",
-      "Date": "27,05,2023",
-      "startTime": "15:00",
-      "endTime": "16:30"
+        "bookingID": "1432543",
+        "userID": "01",
+        "roomID": "432",
+        "Date": "27,05,2023",
+        "startTime": "15:00",
+        "endTime": "16:30"
     },
     {
         "bookingID": "1432543",
@@ -15,5 +15,4 @@
         "startTime": "15:00",
         "endTime": "16:30"
     } 
-  ]
-  
+]
