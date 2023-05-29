@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './forms.css';
 
 export default function SignUpPanel({onCancel, onSignUp}) {
     const [uniId, setUniId] = useState('');
@@ -8,22 +9,31 @@ export default function SignUpPanel({onCancel, onSignUp}) {
 
     return (
         <div>
-            <form>
-                <label>uni id (temp)</label>
-                <input type='text' value={uniId} onChange={setUniId}/>
-            </form>
-            <form>
-                <label>Username:</label>
-                <input type='text' value={username} onChange={setUsername}/>
-            </form>
-            <form>
-                <label>Password:</label>
-                <input type='text' value={password} onChange={setPassword}/>
-            </form>
-            <form>
-                <label>Confirm Password:</label>
-                <input type='text' value={passwordConfirm} onChange={setPasswordConfirm}/>
-            </form>
+            <div className='form'>
+                <div className='form-field-labels'>
+                    <label className='form-field-label'>uni id (temp):</label>
+                    <br/>
+                    <label className='form-field-label'>Username:</label>
+                    <br/>
+                    <label className='form-field-label'>Password:</label>
+                    <br/>
+                    <label className='form-field-label'>Confirm Password:</label>
+                </div>
+                <div>
+                    <form>
+                        <input className='form-field' type='text' value={uniId} onChange={event => setUniId(event.target.value)}/>
+                    </form>
+                    <form>
+                        <input className='form-field' type='text' value={username} onChange={event => setUsername(event.target.value)}/>
+                    </form>
+                    <form>
+                        <input className='form-field' type='text' value={password} onChange={event => setPassword(event.target.value)}/>
+                    </form>
+                    <form>
+                        <input className='form-field' type='text' value={passwordConfirm} onChange={event => setPasswordConfirm(event.target.value)}/>
+                    </form>
+                </div>
+            </div>
             <button onClick={onCancel}>Cancel</button>
             <button onClick={() => onSignUp(uniId, username, password, passwordConfirm)}>Sign Up</button>
         </div>

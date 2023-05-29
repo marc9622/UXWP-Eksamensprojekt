@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export default function FrontPage({isUser}) {
+export default function FrontPage({getIsAdmin}) {
     const [universities, setUniversities] = useState([]);
     const [clients, setClients] = useState([]);
 

@@ -4,7 +4,7 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import LogInPanel from './LogInPanel';
 import SignUpPanel from './SignUpPanel';
 
-export default function Header({onUserSet}) {
+export default function Header({setUser, getIsLoggedIn, getUsername}) {
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [isSigningUp, setIsSigningUp] = useState(false);
 
@@ -42,16 +42,17 @@ export default function Header({onUserSet}) {
                             isLoggingIn ?
                                 (<LogInPanel
                                     onCancel={() => setIsLoggingIn(false)}
-                                    onLogIn={(username, password) => onUserSet(fetchLogIn(username, password))}
+                                    onLogIn={(username, password) => setUser(fetchLogIn(username, password))}
                                 />) :
                                 isSigningUp &&
                                     (<SignUpPanel
                                         onCancel={() => setIsSigningUp(false)}
-                                        onSignUp={(username, password, uniId) => onUserSet(fetchSignUp(username, password, uniId))}
+                                        onSignUp={(username, password, uniId) => setUser(fetchSignUp(username, password, uniId))}
                                     />)
                         }
-                        <button onClick={() => onUserSet(null)}>Log Out</button>
+                        <button onClick={() => setUser(null)}>Log Out</button>
                     </Nav>
+                    <span>{getIsLoggedIn() ? 'Logged in as ' + getUsername() : 'Not logged in'}</span>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
