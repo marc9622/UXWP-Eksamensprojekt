@@ -1,42 +1,28 @@
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import FrontPage from './routes/frontpage';
+import FrontPage from './routes/FrontPage';
 import UniPage from './routes/UniPage';
 import RoomPage from './routes/RoomPage';
-import UniPageAdmin from './routes/UniPageAdmin';
-import RoomPageAdmin from './routes/RoomPageAdmin';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { useState } from 'react';
-import { useEffect } from 'react';
 
 export default function App() {
     const [user, setUser] = useState({});
 
-    function isUserLoggedIn() {
-        return user !== null;
+    const isUser = {
+        loggedIn: () => user !== null,
+        admin: () => user !== null && user.admin,
     }
-
-    function isUserAdmin() {
-        return user !== null && user.admin;
-    }
-
-    async function fetchUser() {
-        return null; // TODO:
-    }
-
-    useEffect(() => {fetchUser().then(data => setUser(user))}, []);
 
     return (
         <div className='App'>
-            <Header/>
+            <Header onUserSet={setUser}/>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<FrontPage/>}/>
-                    <Route path='/uni/:uniId' element={<UniPage/>}/>
-                    <Route path='/uni/:uniId/room/:roomId' element={<RoomPage/>}/>
-                    <Route path='/a/uni/:uniId' element={<UniPageAdmin/>}/>
-                    <Route path='/a/uni/:uniId/room/:roomId' element={<RoomPageAdmin/>}/>
+                    <Route path='/' element={<FrontPage isUser={isUser}/>}/>
+                    <Route path='/uni/:uniId' element={<UniPage isUser={isUser}/>}/>
+                    <Route path='/uni/:uniId/room/:roomId' element={<RoomPage isUser={isUser}/>}/>
                 </Routes>
             </BrowserRouter>
             <Footer/>

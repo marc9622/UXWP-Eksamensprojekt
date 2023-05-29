@@ -1,7 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import LogInPanel from './LogInPanel';
+import SignUpPanel from './SignUpPanel';
 
-export default function Header() {
+export default function Header({onUserSet}) {
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
+    const [isSigningUp, setIsSigningUp] = useState(false);
+
+    async function fetchLogIn(username, password) {
+        return await fetch('http://localhost:3001/user',
+            {method: 'GET', body: JSON.stringify({username, password})})
+            .then(res => res.json());
+    }
+
+    async function fetchSignUp(username, password, uniId) {
+        return await fetch('http://localhost:3001/user',
+            {method: 'POST', body: JSON.stringify({username, password, uniId})})
+            .then(res => res.json());
+    }
+
     return (
         <Navbar bg='primary' expand='md'>
             <Container>
@@ -18,6 +36,21 @@ export default function Header() {
                             <NavDropdown.Divider/>
                             <NavDropdown.Item href='/'>Home</NavDropdown.Item>
                         </NavDropdown>
+                        <button onClick={() => {setIsLoggingIn(true); setIsSigningUp(false);}}>Log In</button>
+                        <button onClick={() => {setIsLoggingIn(false); setIsSigningUp(true);}}>Sign Up</button>
+                        {
+                            isLoggingIn ?
+                                (<LogInPanel
+                                    onCancel={() => setIsLoggingIn(false)}
+                                    onLogIn={(username, password) => onUserSet(fetchLogIn(username, password))}
+                                />) :
+                                isSigningUp &&
+                                    (<SignUpPanel
+                                        onCancel={() => setIsSigningUp(false)}
+                                        onSignUp={(username, password, uniId) => onUserSet(fetchSignUp(username, password, uniId))}
+                                    />)
+                        }
+                        <button onClick={() => onUserSet(null)}>Log Out</button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

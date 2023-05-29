@@ -2,11 +2,18 @@
   import { Link, useParams } from "react-router-dom";
   import Color from 'color-js';
 
+<<<<<<< HEAD
   export default function UniPage() {
       const params = useParams();
       const [rooms, setRooms] = useState([]);
       const [bookings, setBookings] = useState([]);
       const [currentTime, setCurrentTime] = useState(new Date());
+=======
+export default function UniPage({isUser}) {
+    const params = useParams();
+    const [rooms, setRooms] = useState([]);
+    const [bookings, setBookings] = useState([]);
+>>>>>>> dd96b32ab61253dbf0569f553da3631b81f62c39
 
       const greenColor = Color('#00ff00');
       const yellowColor = Color('#ffff00');
