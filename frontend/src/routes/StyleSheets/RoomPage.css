@@ -19,14 +19,6 @@
     aspect-ratio: 1/1; /* Set aspect-ratio to create a square shape */
   }
 
-  .room-cards.booked {
-    background-color: red;
-  }
-  
-  .room-cards.available {
-    background-color: green;
-  }
-  
   /* On mouse-over, add a deeper shadow */
   .room-cards:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
