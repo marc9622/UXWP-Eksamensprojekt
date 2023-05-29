@@ -76,3 +76,48 @@ export async function remove(roomId) {
         await save(roomArray);
     }
 }
+
+export function setRoutings(router) {
+
+    router.get('/:uniID/rooms-list', async (request, response) => {
+        try {
+            console.log(request.params.id);
+            var roomList = await getAll(request.params.uniID);
+            response.setHeader('Content-Type', 'application/json');
+            console.log(roomList);
+            response.json(roomList);
+        } catch (err) {
+            // Handle any errors
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.get('/:uniID/room/:roomID', async (request, response) => {
+        try {
+            console.log(request.params.roomID);
+            console.log(request.params.uniID);
+            var room = await getByID(request.params.roomID,request.params.uniID);
+            response.setHeader('Content-Type', 'application/json');
+            console.log(room);
+            response.json(room);
+        } catch (err) {
+            // Handle any errors
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.post('/room/add', async (request, response) => {
+        try {
+            const room = request.body;
+            const createdRoom = await add(room);
+            console.log(createdRoom);
+            response.status(201).json(createdRoom);
+        } catch (err) {
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+}
