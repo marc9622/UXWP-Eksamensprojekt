@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import FrontPage from './routes/FrontPage';
+import FrontPage from './routes/frontpage';
 import UniPage from './routes/UniPage';
 import RoomPage from './routes/RoomPage';
 import Header from './components/Header';
