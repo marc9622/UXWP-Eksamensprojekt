@@ -75,3 +75,45 @@ export async function remove(userId) {
         await save(userArray);
     }
 }
+
+export function setRoutings(router) {
+
+    router.post('/user/add', async (request, response) => {
+        try {
+            const user = request.body;
+            const createdUser = await add(user);
+            console.log(createdUser);
+            response.status(201).json(createdUser);
+        } catch (err) {
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.get('/user/:id', async (request, response) => {
+        try {
+            var user = await getByID(request.params.id);
+            response.setHeader('Content-Type', 'application/json');
+            console.log(user);
+            response.json(user);
+        } catch (err) {
+            // Handle any errors
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.get('/users-list', async (request, response) => {
+        try {
+            var userList = await getAll();
+            response.setHeader('Content-Type', 'application/json');
+            console.log(userList);
+            response.json(userList);
+        } catch (err) {
+            // Handle any errors
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+}

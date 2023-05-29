@@ -1,15 +1,31 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function FrontPage({isUser}) {
+export default function FrontPage({getIsAdmin}) {
     const [universities, setUniversities] = useState([]);
     const [clients, setClients] = useState([]);
 
     async function fetchUniversities() {
-        return await fetch('http://localhost:3001/unis-list', {method: 'GET'}).then(res => res.json());
+        return await
+            fetch('http://localhost:3001/unis-list', {method: 'GET'})
+            .then(res => {
+                if (res.status == 200)
+                    return res.json()
+                console.log(res.status);
+                console.log(res.json());
+                return [];
+            });
     }
     async function fetchClients() {
-        return await fetch('http://localhost:3001/users-list', {method: 'GET'}).then(res => res.json());
+        return await
+            fetch('http://localhost:3001/users-list', {method: 'GET'})
+            .then(res => {
+                if (res.status == 200)
+                    return res.json()
+                console.log(res.status);
+                console.log(res.json());
+                return [];
+            });
     }
 
     useEffect(() => {fetchUniversities().then(data => setUniversities(data))}, []);

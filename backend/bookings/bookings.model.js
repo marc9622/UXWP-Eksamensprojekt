@@ -58,3 +58,44 @@ export async function add(booking) {
     bookingArray.push(booking);
     await save(bookingArray);
 }
+
+export function setRoutings(router) {
+
+    router.get('/:uniID/bookings-list', async (request, response) => {
+        try {
+            var bookingList = await getAll(request.params.uniID);
+            response.setHeader('Content-Type', 'application/json');
+            console.log(bookingList);
+            response.json(bookingList);
+        } catch (err) {
+            // Handle any errors
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.get('/:uniID/bookings/:id', async (request, response) => {
+        try {
+            const booking = await getByID(request.params.id,request.params.uniID);
+            response.setHeader('Content-Type', 'application/json');
+            console.log(booking);
+            response.json(booking);
+        } catch (err) {
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.post('/booking/add', async (request, response) => {
+        try {
+            const booking = request.body;
+            const createdBooking = await add(booking);
+            console.log(createdBooking);
+            response.status(201).json(createdBooking);
+        } catch (err) {
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+}

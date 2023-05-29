@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import Schedule from "../components/BookingSchedule";
 import './StyleSheets/RoomPage.css';
 
-export default function RoomPage({isUser}) {
+export default function RoomPage({getIsAdmin}) {
     const params = useParams();
     const [room, setRoom] = useState({
         // Structure of the room objects that should be fetched from the API

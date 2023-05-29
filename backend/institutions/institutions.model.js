@@ -23,3 +23,44 @@ async function save(uni = []) {
     let uniText = JSON.stringify(uni);
     await fs.writeFile(UNI_FILE, uniText);
 }
+
+export function setRoutings(router) {
+
+    router.get('/unis-list', async (request, response) => {
+        try {
+            const uniList = await getAll();
+            response.setHeader('Content-Type', 'application/json');
+            console.log(uniList);
+            response.json(uniList);
+        } catch (err) {
+            // Handle any errors
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.post('/uni/add', async (request, response) => {
+        try {
+            const uni = request.body;
+            const createdUni = await add(uni);
+            console.log(createdUni);
+            response.status(201).json(createdUni);
+        } catch (err) {
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.get('/unis/:id', async (request, response) => {
+        try {
+            const uni = await getByID(request.params.id);
+            response.setHeader('Content-Type', 'application/json');
+            console.log(uni);
+            response.json(uni);
+        } catch (err) {
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+}

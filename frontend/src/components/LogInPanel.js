@@ -8,17 +8,17 @@ export default function LogInPanel({onCancel, onLogIn}) {
     return (
         <div>
             <div className='form'>
-                <div>
-                    <label className='form-field-name'>Username:</label>
+                <div className='form-field-labels'>
+                    <label className='form-field-label'>Username:</label>
                     <br/>
-                    <label className='form-field-name'>Password:</label>
+                    <label className='form-field-label'>Password:</label>
                 </div>
                 <div>
                     <form>
-                        <input className='form-field' type='text' value={username} onChange={setUsername}/>
+                        <input className='form-field' type='text' value={username} onChange={event => setUsername(event.target.value)}/>
                     </form>
                     <form onSubmit={() => onLogIn(username, password)}>
-                        <input className='form-field' type='text' value={password} onChange={setPassword}/>
+                        <input className='form-field' type='text' value={password} onChange={event => setPassword(event.target.value)}/>
                     </form>
                 </div>
             </div>
