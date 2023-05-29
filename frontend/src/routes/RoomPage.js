@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BookingsCalender from "../components/BookingCalender";
-import BookingsSchedule from "../components/BookingSchedule";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import Schedule from "../components/BookingSchedule";
 import './StyleSheets/RoomPage.css';
 
 export default function RoomPage({isUser}) {
     const params = useParams();
     const [room, setRoom] = useState({
         // Structure of the room objects that should be fetched from the API
-        facilities: {},
+        facilities: [],
         bookings: {
             today: [],
             thisMonth: [],
         }
     });
+
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
 
     async function fetchRoom() {
         return await fetch('http://localhost:3001/' + params.uniId + '/room/' + params.roomId, {method: 'GET'}).then(res => res.json());
@@ -21,32 +25,58 @@ export default function RoomPage({isUser}) {
 
     useEffect(() => {fetchRoom().then(data => setRoom(data))}, []);
 
-    return (
+
+    function handleDateSelection(date) {
+        setSelectedDate(date);
+        setSelectedTime(null);
+      }
+    
+      function handleTimeSelection(time) {
+        setSelectedTime(time);
+      }
+
+      function handleBooking() {
+        if (selectedDate && selectedTime) {
+            console.log('Booking:', selectedDate, selectedTime);
+        }else{
+            console.log('Choose a real date and time');
+        }
+      }
+
+    
+      return (
         <div>
-            <h1>Room '{params.roomId || 'null'}' in '{params.uniId || 'null'}'</h1>
-            <div>
-                <h2>Facilities:</h2>
-                {room.facilities.chairs} chairs <br/>
-                {room.facilities.powerOutlets} power outlets <br/>
-                {room.facilities.isFoodAllowed ?
-                    'Food is allowed' :
-                    'Food is not allowed'} <br/>
-                {room.facilities.hasScreen &&
-                    <div>Has screen</div> }
-                {room.facilities.hasCamera &&
-                    <div>Has camera</div> }
-                {room.facilities.hasProjector &&
-                    <div>Has projector</div> }
-                {room.facilities.hasWhiteboard &&
-                    <div>Has whiteboard</div> }
+          <h1>Room '{params.roomId || 'null'}' in '{params.uniId || 'null'}'</h1>
+          <div className="facilities">
+            <h3>Facilities:</h3>
+            <ul>
+              {room.facilities.map(facility => (
+                <li key={facility}>{facility}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="booking-container">
+            <div className="calendar-container">
+              <h3>Select Date:</h3>
+                 <div className="calendar-wrapper">
+                    <Calendar
+                    value={selectedDate}
+                    onChange={handleDateSelection}
+                    />
+                 </div>
             </div>
-            <div>
-            {/* 
-                <h2>Bookings:</h2>
-                <BookingsCalender bookings={room.bookings.thisMonth}/>
-                <BookingsSchedule bookings={room.bookings.today}/>
-            */}  
+            <div className="schedule-container">
+              <h3>Select Time:</h3>
+              <Schedule
+                bookings={room.bookings}
+                selectedDate={selectedDate}
+                onTimeSelect={handleTimeSelection}
+              />
             </div>
+            <button className="BookBtn" onClick={handleBooking} disabled={!selectedDate || !selectedTime}>
+              Book Room
+            </button>
+          </div>
         </div>
-    );
-}
+      );
+    }

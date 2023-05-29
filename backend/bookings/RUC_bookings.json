@@ -1,68 +1,42 @@
 [
-    {
-      "id": "room782146",
-      "name": "4D01",
-      "floor": "3",
-      "people": "6",
-      "facilities": ["projector"],
-      "bookings": []
-    },
-    {
-      "id": "room891235",
-      "name": "4D02",
-      "floor": "3",
-      "people": "8",
-      "facilities": ["whiteboard", "microphone"],
-      "bookings": []
-    },
-    {
-      "id": "room913257",
-      "name": "4D03",
-      "floor": "3",
-      "people": "4",
-      "facilities": ["projector", "speaker"],
-      "bookings": []
-    },
-    {
-      "id": "room106824",
-      "name": "4D04",
-      "floor": "3",
-      "people": "10",
-      "facilities": ["whiteboard", "microphone", "speaker"],
-      "bookings": []
-    }
-
-    {
-        "id": "room782146",
-        "name": "4D01",
-        "floor": "3",
-        "people": "6",
-        "facilities": ["projector"],
-        "bookings": []
-      },
-      {
-        "id": "room891235",
-        "name": "4D02",
-        "floor": "3",
-        "people": "8",
-        "facilities": ["whiteboard", "microphone"],
-        "bookings": []
-      },
-      {
-        "id": "room913257",
-        "name": "4D03",
-        "floor": "3",
-        "people": "4",
-        "facilities": ["projector", "speaker"],
-        "bookings": []
-      },
-      {
-        "id": "room106824",
-        "name": "4D04",
-        "floor": "3",
-        "people": "10",
-        "facilities": ["whiteboard", "microphone", "speaker"],
-        "bookings": []
-      }
-  ]
-  
+  {
+    "bookingID": "abc123",
+    "roomID": "room782146",
+    "userID": "user987",
+    "date": "2023-05-30",
+    "startTime": "09:00",
+    "endTime": "11:00"
+  },
+  {
+    "bookingID": "booking456",
+    "roomID": "room541235",
+    "userID": "user123",
+    "date": "2023-06-02",
+    "startTime": "14:00",
+    "endTime": "16:00"
+  },
+  {
+    "bookingID": "booking789",
+    "roomID": "room105424",
+    "userID": "user456",
+    "date": "2023-06-05",
+    "startTime": "10:30",
+    "endTime": "12:30"
+  },
+  {
+    "bookingID": "bookingABC",
+    "roomID": "room106824",
+    "userID": "userXYZ",
+    "date": "2023-06-10",
+    "startTime": "13:00",
+    "endTime": "15:00"
+  },
+  {
+    "bookingID": "bookingDEF",
+    "roomID": "room106824",
+    "userID": "userDEF",
+    "date": "2023-06-15",
+    "startTime": "16:30",
+    "endTime": "18:30"
+  }
+]

@@ -1,4 +1,132 @@
 [
+  {
+    "id": "room782146",
+    "name": "1D01",
+    "floor": "3",
+    "people": "6",
+    "facilities": ["projector"],
+    "bookings": []
+  },
+  {
+    "id": "room891235",
+    "name": "1D02",
+    "floor": "3",
+    "people": "8",
+    "facilities": ["whiteboard", "microphone"],
+    "bookings": []
+  },
+  {
+    "id": "room913257",
+    "name": "1D03",
+    "floor": "3",
+    "people": "4",
+    "facilities": ["projector", "speaker"],
+    "bookings": []
+  },
+  {
+    "id": "room106824",
+    "name": "1D04",
+    "floor": "3",
+    "people": "10",
+    "facilities": ["whiteboard", "microphone", "speaker"],
+    "bookings": []
+  },
+  {
+      "id": "room782346",
+      "name": "2D01",
+      "floor": "3",
+      "people": "6",
+      "facilities": ["projector"],
+      "bookings": []
+    },
+    {
+      "id": "room541235",
+      "name": "2D02",
+      "floor": "3",
+      "people": "8",
+      "facilities": ["whiteboard", "microphone"],
+      "bookings": []
+    },
+    {
+      "id": "room923457",
+      "name": "2D03",
+      "floor": "3",
+      "people": "4",
+      "facilities": ["projector", "speaker"],
+      "bookings": []
+    },
+    {
+      "id": "room105424",
+      "name": "2D04",
+      "floor": "3",
+      "people": "10",
+      "facilities": ["whiteboard", "microphone", "speaker"],
+      "bookings": []
+    },
+     {
+    "id": "room782146",
+    "name": "3D01",
+    "floor": "3",
+    "people": "6",
+    "facilities": ["projector"],
+    "bookings": []
+  },
+  {
+    "id": "room891235",
+    "name": "3D02",
+    "floor": "3",
+    "people": "8",
+    "facilities": ["whiteboard", "microphone"],
+    "bookings": []
+  },
+  {
+    "id": "room913257",
+    "name": "3D03",
+    "floor": "3",
+    "people": "4",
+    "facilities": ["projector", "speaker"],
+    "bookings": []
+  },
+  {
+    "id": "room106824",
+    "name": "3D04",
+    "floor": "3",
+    "people": "10",
+    "facilities": ["whiteboard", "microphone", "speaker"],
+    "bookings": []
+  },
+  {
+      "id": "room782346",
+      "name": "3D01",
+      "floor": "3",
+      "people": "6",
+      "facilities": ["projector"],
+      "bookings": []
+    },
+    {
+      "id": "room541235",
+      "name": "3D02",
+      "floor": "3",
+      "people": "8",
+      "facilities": ["whiteboard", "microphone"],
+      "bookings": []
+    },
+    {
+      "id": "room923457",
+      "name": "3D03",
+      "floor": "3",
+      "people": "4",
+      "facilities": ["projector", "speaker"],
+      "bookings": []
+    },
+    {
+      "id": "room105424",
+      "name": "3D04",
+      "floor": "3",
+      "people": "10",
+      "facilities": ["whiteboard", "microphone", "speaker"],
+      "bookings": []
+    },
     {
       "id": "room782146",
       "name": "4D01",
@@ -17,52 +145,10 @@
     },
     {
       "id": "room913257",
-      "name": "4D03",
+      "name": "1D03",
       "floor": "3",
       "people": "4",
       "facilities": ["projector", "speaker"],
       "bookings": []
-    },
-    {
-      "id": "room106824",
-      "name": "4D04",
-      "floor": "3",
-      "people": "10",
-      "facilities": ["whiteboard", "microphone", "speaker"],
-      "bookings": []
     }
-
-    {
-        "id": "room782146",
-        "name": "4D01",
-        "floor": "3",
-        "people": "6",
-        "facilities": ["projector"],
-        "bookings": []
-      },
-      {
-        "id": "room891235",
-        "name": "4D02",
-        "floor": "3",
-        "people": "8",
-        "facilities": ["whiteboard", "microphone"],
-        "bookings": []
-      },
-      {
-        "id": "room913257",
-        "name": "4D03",
-        "floor": "3",
-        "people": "4",
-        "facilities": ["projector", "speaker"],
-        "bookings": []
-      },
-      {
-        "id": "room106824",
-        "name": "4D04",
-        "floor": "3",
-        "people": "10",
-        "facilities": ["whiteboard", "microphone", "speaker"],
-        "bookings": []
-      }
-  ]
-  
+]

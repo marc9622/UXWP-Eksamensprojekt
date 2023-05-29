@@ -4,6 +4,7 @@ var BOOKING_FILE = "";
 
 
 function getBookingFile(UNI_ID){
+    console.log(UNI_ID)
     BOOKING_FILE = "./bookings/"+UNI_ID+"_bookings.json";
 }
 // return all bookings from file

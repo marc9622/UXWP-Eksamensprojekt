@@ -1,6 +1,7 @@
   import { useEffect, useState } from "react";
   import { Link, useParams } from "react-router-dom";
   import Color from 'color-js';
+  import './StyleSheets/UniPage.css';
   
   export default function UniPage({isUser}) {
       const params = useParams();

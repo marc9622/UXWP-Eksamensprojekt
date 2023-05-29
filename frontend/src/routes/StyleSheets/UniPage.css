@@ -1,0 +1,26 @@
+.room-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Center the grid vertically */
+    margin-top: 20px; /* Add some top margin for spacing */
+    grid-gap: 10px;
+  }
+  
+  .room-cards {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    padding: 2px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    aspect-ratio: 1/1; /* Set aspect-ratio to create a square shape */
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .room-cards:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  
