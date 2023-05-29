@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-export default function UniPage() {
+export default function UniPage({isUser}) {
     const params = useParams();
     const [rooms, setRooms] = useState([]);
     const [bookings, setBookings] = useState([]);
