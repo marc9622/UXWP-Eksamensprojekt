@@ -48,11 +48,11 @@ export async function getByID(bookingId,UNI_ID) {
 }
 
 // create a new user
-export async function add(booking) {
+export async function add(booking,uniID) {
     console.log(booking);
     const newBooking = booking;
     newBooking.id = createRandomID("booking");
-    let bookingArray = await getAll();
+    let bookingArray = await getAll(uniID);
     if (findBooking(bookingArray, booking.id) !== -1)
     throw new Error(`booking with ID:${booking.id} already exists`);
     bookingArray.push(booking);
@@ -99,10 +99,11 @@ export function setRoutings(router) {
         }
     });
 
-    router.post('/booking/add', async (request, response) => {
+    router.post('/:uniID/bookings', async (request, response) => {
         try {
+            console.log("creatingBooking...");
             const booking = request.body;
-            const createdBooking = await add(booking);
+            const createdBooking = await add(booking,request.params.uniID);
             console.log(createdBooking);
             response.status(201).json(createdBooking);
         } catch (err) {
