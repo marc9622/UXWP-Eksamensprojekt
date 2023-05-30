@@ -9,9 +9,14 @@ export function getSuffix(number) {
     }
 }
 
-export function asTimeString(hours, minutes) {
+export function asTimeString(hours, minutes, seconds) {
     let timeString = hours + ':';
     if (minutes < 10) timeString += '0';
     timeString += minutes;
+    if (seconds !== undefined) {
+        timeString += ':';
+        if (seconds < 10) timeString += '0';
+        timeString += seconds;
+    }
     return timeString;
 }
