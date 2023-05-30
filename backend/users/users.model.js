@@ -52,7 +52,7 @@ export async function add(newUser) {
 // update existing user
 export async function update(username, user) {
     let userArray = await getAll();
-    let index = findUser(userArray, username); // findIndex
+    let index = findUser(userArray, username);
     if (index === -1) throw new Error(`User with username:${user.username} does not exist`);
     else {
         userArray[index] = user;
@@ -62,12 +62,14 @@ export async function update(username, user) {
 
 // delete existing user
 export async function remove(username) {
-    let userArray = await getAll();
-    let index = findUser(userArray, userId); // findIndex
+    const userArray = await getAll();
+    const index = findUser(userArray, username);
     if (index === -1) throw new Error(`User with username:${username} does not exist`);
     else {
+        const user = userArray[index];
         userArray.splice(index, 1);
         await save(userArray);
+        return user;
     }
 }
 
@@ -76,6 +78,18 @@ export function setRoutings(router) {
     router.post('/user/:username/:password', async (request, response) => {
         try {
             const user = await add({username: request.params.username, password: request.params.password, role: 'user'});
+            const responseUser = {username: user.username, role: user.role};
+            console.log(responseUser);
+            response.status(200).json(responseUser);
+        } catch (err) {
+            console.error(err);
+            response.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+
+    router.delete('/user/:username', async (request, response) => {
+        try {
+            const user = await remove(request.params.username);
             const responseUser = {username: user.username, role: user.role};
             console.log(responseUser);
             response.status(200).json(responseUser);
