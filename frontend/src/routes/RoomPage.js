@@ -75,9 +75,9 @@ export default function RoomPage({isLoggedIn, isAdmin, username}) {
         }
         if (selectedDate && selectedStartTime && selectedEndTime) {
             const newBooking = {
-                uniId: params.uniId,
-                userid: username,
-                roomId: params.roomId,
+                uniID: params.uniId,
+                userID: username,
+                roomID: params.roomId,
                 date: new Date(selectedDate.getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0],
                 startTime: selectedStartTime,
                 endTime: selectedEndTime

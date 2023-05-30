@@ -56,13 +56,13 @@ export default function UniPage({isAdmin}) {
 
                 // Update room bookings
                 const updatedRooms = roomsData.map(room => {
-                    const matchedBooking = bookingsData.find(booking => booking.roomID === room.id);
-
+                    const matchedBooking = bookingsData.find(booking => booking.roomID === room.id)
                     if (matchedBooking) {
                         const startTime = new Date(matchedBooking.date + 'T' + matchedBooking.startTime);
                         const endTime = new Date(matchedBooking.date + 'T' + matchedBooking.endTime);
+                
                         const hourAhead = new Date(currentTime.getTime() + (1.5 * 60 * 60 * 1000));
-
+                        
                         if (startTime.getTime() < currentTime.getTime() && endTime.getTime() > currentTime.getTime()) {
                             return { ...room, color: redColor, isBooked: true, booking: matchedBooking };
                         } else if (startTime <= hourAhead && endTime > currentTime) {
