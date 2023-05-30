@@ -14,7 +14,8 @@ export default function Schedule({ bookings, selectedDate, onStartTimeSelect, on
     try {
       const response = await fetch(`http://localhost:3001/${params.uniId}/bookings-list`, { method: 'GET' });
       const data = await response.json();
-      setBookingsData(data);
+      const filteredData = data.filter(booking => booking.roomId === params.roomId); // Add this line to filter the bookings by room ID
+      setBookingsData(filteredData);
     } catch (error) {
       console.error("Error fetching bookings:", error);
     }
