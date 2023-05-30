@@ -7,6 +7,7 @@ import './StyleSheets/RoomPage.css';
 
 export default function RoomPage({isLoggedIn, isAdmin, username}) {
   const params = useParams();
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [room, setRoom] = useState({
     // Structure of the room objects that should be fetched from the API
     facilities: [],
@@ -23,6 +24,7 @@ export default function RoomPage({isLoggedIn, isAdmin, username}) {
   async function fetchRoom() {
     return await fetch('http://localhost:3001/' + params.uniId + '/room/' + params.roomId, { method: 'GET' }).then(res => res.json());
   }
+
 
   useEffect(() => { fetchRoom().then(data => setRoom(data)) }, []);
 
@@ -66,14 +68,21 @@ export default function RoomPage({isLoggedIn, isAdmin, username}) {
 
   
   function handleBooking() {
+    if(username == null){
+      setShowLoginPopup(true);
+      return;
+    }
     if (selectedDate && selectedStartTime && selectedEndTime) {
       const newBooking = {
         uniId: params.uniId,
+        userid: username,
         roomId: params.roomId,
         date: new Date(selectedDate.getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0],
         startTime: selectedStartTime,
         endTime: selectedEndTime
       };
+     
+      
 
       addBooking(newBooking);
     } else {
@@ -103,6 +112,12 @@ export default function RoomPage({isLoggedIn, isAdmin, username}) {
             />
           </div>
         </div>
+        {showLoginPopup && !isLoggedIn && (
+        <div className="login-popup">
+          <p>Login or sign up first to book a room.</p>
+          <button onClick={() => setShowLoginPopup(false)}>Close</button>
+        </div>
+      )}
         <div className="schedule-container">
           <h3>Select Time:</h3>
           <Schedule
@@ -117,5 +132,6 @@ export default function RoomPage({isLoggedIn, isAdmin, username}) {
         </button>
       </div>
     </div>
+    
   );
 }

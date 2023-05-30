@@ -11,3 +11,33 @@
     color: white;
     text-transform: uppercase;
   }
+
+  .login-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-popup p {
+    margin-bottom: 10px;
+  }
+  
+  .login-popup button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-popup button:hover {
+    background-color: #45a049;
+  }
+  
+  
