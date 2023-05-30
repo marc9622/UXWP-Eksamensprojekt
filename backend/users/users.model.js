@@ -14,7 +14,8 @@ export async function getAll() {
             await save([]); // create a new file with empty array
             console.log("No users found, returning empty array");
             return []; // return empty array
-        } // // cannot handle this exception, so rethrow
+        }
+        // cannot handle this exception, so rethrow
         else throw err;
     }
 }
@@ -26,39 +27,33 @@ async function save(users = []) {
 }
 
 // helper function for userId
-function findUser(userArray, userId) {
-    return userArray.findIndex((currentuser) => currentuser.id === userId);
+function findUser(userArray, username) {
+    return userArray.findIndex(currentuser => currentuser.username === username);
 }
 
-// get user by ID
-export async function getByID(userId) {
+// get user by usersame
+export async function getByUsername(username) {
     let userArray = await getAll();
-    let index = findUser(userArray, userId);
-    if (index === -1) throw new Error(`user with name '${userId}' doesn't exist`);
+    let index = findUser(userArray, username);
+    if (index === -1) throw new Error(`User with name '${userId}' doesn't exist`);
     else return userArray[index];
 }
 
 // create a new user
 export async function add(newUser) {
     console.log(newUser);
-    let user = newUser;
-    user.id = createRandomID("user");
-    user.books = [];
-    user.orders = [];
-    user.bookings = []
     let userArray = await getAll();
-    if (findUser(userArray, newUser.id) !== -1)
-    throw new Error(`user with ID:${newUser.id} already exists`);
+    if (findUser(userArray, newUser.username) !== -1) throw new Error(`User with usersame:${newUser.username} already exists`);
     userArray.push(newUser);
     await save(userArray);
-    return user
+    return newUser;
 }
 
 // update existing user
-export async function update(userId, user) {
+export async function update(username, user) {
     let userArray = await getAll();
-    let index = findUser(userArray, userId); // findIndex
-    if (index === -1) throw new Error(`User with ID:${userId} does not exist`);
+    let index = findUser(userArray, username); // findIndex
+    if (index === -1) throw new Error(`User with username:${user.username} does not exist`);
     else {
         userArray[index] = user;
         await save(userArray);
@@ -66,36 +61,37 @@ export async function update(userId, user) {
 }
 
 // delete existing user
-export async function remove(userId) {
+export async function remove(username) {
     let userArray = await getAll();
     let index = findUser(userArray, userId); // findIndex
-    if (index === -1) throw new Error(`user with ID:${userId} does not exist`);
+    if (index === -1) throw new Error(`User with username:${username} does not exist`);
     else {
-        userArray.splice(index, 1); // remove user from array
+        userArray.splice(index, 1);
         await save(userArray);
     }
 }
 
 export function setRoutings(router) {
 
-    router.post('/user/add', async (request, response) => {
+    router.post('/user/:username/:password', async (request, response) => {
         try {
-            const user = request.body;
-            const createdUser = await add(user);
-            console.log(createdUser);
-            response.status(201).json(createdUser);
+            const user = await add({username: request.params.username, password: request.params.password, role: 'user'});
+            const responseUser = {username: user.username, role: user.role};
+            console.log(responseUser);
+            response.status(200).json(responseUser);
         } catch (err) {
             console.error(err);
             response.status(500).json({ error: 'Internal Server Error' });
         }
     });
 
-    router.get('/user/:id', async (request, response) => {
+    router.get('/user/:username/:password', async (request, response) => {
         try {
-            var user = await getByID(request.params.id);
+            const user = await getByUsername(request.params.username);
+            const responseUser = {username: user.username, role: user.role}
             response.setHeader('Content-Type', 'application/json');
-            console.log(user);
-            response.json(user);
+            console.log(responseUser);
+            response.status(200).json(responseUser);
         } catch (err) {
             // Handle any errors
             console.error(err);
@@ -108,7 +104,7 @@ export function setRoutings(router) {
             var userList = await getAll();
             response.setHeader('Content-Type', 'application/json');
             console.log(userList);
-            response.json(userList);
+            response.status(200).json(userList);
         } catch (err) {
             // Handle any errors
             console.error(err);

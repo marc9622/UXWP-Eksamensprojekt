@@ -1,22 +1,20 @@
-  import { useEffect, useState } from "react";
-  import { Link, useParams } from "react-router-dom";
-  import Color from 'color-js';
-  import './StyleSheets/UniPage.css';
-  
-  export default function UniPage({getIsAdmin}) {
-      const params = useParams();
-      const [rooms, setRooms] = useState([]);
-      const [bookings, setBookings] = useState([]);
-      const [currentTime, setCurrentTime] = useState(new Date());
-      
-      const greenColor = Color('#A6FB7E');
-      const yellowColor = Color('#F3F65E');
-      const redColor = Color('#FD5757');
-      
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import Color from 'color-js';
+import './StyleSheets/UniPage.css';
+import { asTimeString } from '../util/Numbers';
 
-    let showTime = currentTime.getHours() 
-        + ':' + currentTime.getMinutes() 
-        + ":" + currentTime.getSeconds();
+const greenColor = Color('#00ff00');
+const yellowColor = Color('#ffff00');
+const redColor = Color('#ff0000');
+
+export default function UniPage({isAdmin}) {
+    const params = useParams();
+    const [rooms, setRooms] = useState([]);
+    const [bookings, setBookings] = useState([]);
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    const showTime = asTimeString(currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds());
 
     async function fetchRooms() {
         return await fetch('http://localhost:3001/' + params.uniId + '/rooms-list', {method: 'GET'})
