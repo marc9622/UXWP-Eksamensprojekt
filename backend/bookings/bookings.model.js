@@ -59,10 +59,23 @@ export async function add(booking) {
     await save(bookingArray);
 }
 
+  // delete existing room
+export async function remove(UNI_ID,bookingId) {
+    let bookingArray = await getAll(UNI_ID);
+    let index = findRoom(bookArray, bookingId); // findIndex
+    if (index === -1) throw new Error(`room with ID:${bookingId} does not exist`);
+    else {
+        bookingArray.splice(index, 1); // remove room from array
+        await save(bookingArray);
+    }
+}
+
 export function setRoutings(router) {
 
     router.get('/:uniID/bookings-list', async (request, response) => {
         try {
+            console.log("HELLO");
+            console.log(request.params.uniID);
             var bookingList = await getAll(request.params.uniID);
             response.setHeader('Content-Type', 'application/json');
             console.log(bookingList);
@@ -98,4 +111,13 @@ export function setRoutings(router) {
         }
     });
 
+    router.delete("/:uniID/bookings/:id", async (request, response) => {
+        try {
+          await remove(request.params.uniID,request.params.id);
+          response.status(204).end();
+        } catch (err) {
+          console.error(err);
+          response.status(500).json({ error: "Internal Server Error" });
+        }
+      });
 }

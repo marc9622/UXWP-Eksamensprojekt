@@ -3,30 +3,35 @@
         "id": "1",
         "username": "john_doe",
         "password": "password123",
+        "institution": "ITU",
         "role": "user"
     },
     {
         "id": "2",
         "username": "jane_smith",
         "password": "pass123",
+        "institution": "CBS",
         "role": "admin"
     },
     {
         "id": "3",
         "username": "michael_brown",
         "password": "securepass",
+        "institution": "DTU",
         "role": "user"
     },
     {
         "id": "4",
         "username": "emily_jones",
         "password": "12345678",
+        "institution": "UCPH",
         "role": "user"
     },
     {
         "id": "5",
         "username": "alex_wilson",
         "password": "pass1234",
+        "institution": "RUC",
         "role": "user"
     }
 ]
