@@ -39,14 +39,14 @@ export default function Header({setUser, isLoggedIn, username}) {
     return (
         <Navbar bg='primary' expand='md'>
             <Container>
-                <Navbar.Brand href='/'>Room Booking</Navbar.Brand>
+                <Navbar.Brand href='/' className='text-light'>Room Booking</Navbar.Brand>
                 <Navbar.Toggle/>
                 <Navbar.Collapse>
                     <Nav>
                         {isLoggedIn ?
                             // when logged in
                             <div className='navbar-nav'>
-                                <Navbar.Text className='navbar-nav'>
+                                <Navbar.Text className='navbar-nav text-light'>
                                     Logged in as {username}
                                 </Navbar.Text>
                                 <Button variant='primary' onClick={() => setUser(null)}>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function FrontPage({isAdmin}) {
@@ -31,21 +32,34 @@ export default function FrontPage({isAdmin}) {
     useEffect(() => {fetchUniversities().then(data => setUniversities(data))}, []);
     useEffect(() => {fetchClients().then(data => setClients(data))}, []);
 
+    // sets padding to 5
+    // p-5
+    // reduces absolute max width
+    // w-50
     return (
         <div>
-            <h1>Universities</h1>
-            {universities.map(uni =>
-                <div>
-                    <Link to={'/uni/' + uni.id}>{uni.name}</Link>
-                </div>
-            )}
-
-            <h1>Clients</h1>
-            {clients.map(client =>
-                <div>
-                    <p>{client.id}: {client.username}, {client.password} ({client.role})</p>
-                </div>
-            )}
+            <Container className='p-5 w-50'>
+                <h1>Institutions</h1>
+                <ul className='list-group'>
+                    {universities.map(uni =>
+                        <li className='list-group-item'>
+                            <Link to={'/uni/' + uni.id}>{uni.name}</Link>
+                        </li>
+                    )}
+                </ul>
+            </Container>
+            {isAdmin &&
+                <Container className='p-5 w-50'>
+                    <h1>Clients</h1>
+                    <ul className='list-group'>
+                    {clients.map(client => (
+                        <li className='list-group-item'>
+                            {client.role}: {client.username}
+                        </li>
+                    ))}
+                    </ul>
+                </Container>
+            }
         </div>
     );
 }

@@ -1,10 +1,10 @@
 import './App.css';
+import './bootstrap-custom.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import FrontPage from './routes/FrontPage';
 import UniPage from './routes/UniPage';
 import RoomPage from './routes/RoomPage';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import { useState } from 'react';
 
 export default function App() {
@@ -40,7 +40,6 @@ export default function App() {
                     />
                 </Routes>
             </BrowserRouter>
-            <Footer/>
         </div>
     );
 }
