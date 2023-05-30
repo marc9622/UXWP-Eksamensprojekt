@@ -23,12 +23,14 @@ export default function RoomPage({getIsAdmin}) {
         return await fetch('http://localhost:3001/' + params.uniId + '/room/' + params.roomId, {method: 'GET'}).then(res => res.json());
     }
 
+
     useEffect(() => {fetchRoom().then(data => setRoom(data))}, []);
 
 
     function handleDateSelection(date) {
         setSelectedDate(date);
         setSelectedTime(null);
+        
       }
     
       function handleTimeSelection(time) {

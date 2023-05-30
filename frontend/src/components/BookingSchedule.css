@@ -18,3 +18,10 @@
     background-color: #d1d1d1;
   }
   
+  .selected {
+    background-color: rgb(55, 255, 0);
+  }
+
+  .booked {
+    background-color: rgb(255, 0, 0);
+  }
