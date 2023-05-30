@@ -102,6 +102,7 @@ export function setRoutings(router) {
     router.get('/user/:username/:password', async (request, response) => {
         try {
             const user = await getByUsername(request.params.username);
+            if (user.password !== request.params.password) return null;
             const responseUser = {username: user.username, role: user.role}
             response.setHeader('Content-Type', 'application/json');
             console.log(responseUser);

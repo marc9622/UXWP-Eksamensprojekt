@@ -47,8 +47,8 @@ export default function FrontPage({isAdmin}) {
 
     return (
         <div>
-            <Container className='p-5 w-50'>
-                <h1 className='d-flex'>Institutions</h1>
+            <Container className='p-5'>
+                <h1 className='d-flex'>Choose your institution</h1>
                 <ul className='list-group'>
                     {universities.map(uni =>
                         <li className='d-flex list-group-item'>
@@ -58,7 +58,7 @@ export default function FrontPage({isAdmin}) {
                 </ul>
             </Container>
             {isAdmin &&
-                <Container className='p-5 w-50'>
+                <Container className='p-5'>
                     <h1 className='d-flex'>Users</h1>
                     {users.map(user => (
                         <div className='d-flex'>
